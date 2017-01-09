@@ -1,0 +1,297 @@
+NewsSources: https://newsapi.org/
+Account on newsapi.org: apikey: 4fd46387a9f1413e8e2a07fd8911a0ec
+	 		News APT: New York Times APT, https://newsapi.org/the-new-york-times-api
+CodeSources: https://www.youtube.com/watch?v=C7gCKUb8LDM&list=PLCCszAMe5RTbXfTZd1hB_wKRF1sB0rGva&index=3
+Platform: macOS Sierra Version 10.12.1
+Xcode: Version 8.2.1
+
+#———————————————————————————————————————Part 1——————————————————————————————————————#
+
+1.  Get the JSON news API from newapi.org, for now we need the news from techcrunch.
+		https://newsapi.org/
+2.  Create a new project in Xcode. 
+    Choose the single view ios Project and choose the language to be swift.
+    
+###################
+# Set constraints #
+###################
+
+3.  In the Main.storyboard, type in "navigation bar"(top), "table View"(next, let it spread on the entire screen), "view, represents a rectangle"(on the same level with he battery icon) on the bottom right, drag it onto our screen.  
+    Put "view, represents a rectangle" before "Navigation bar" on the "View Controller Scene".
+
+4.  Click on "view, represents a rectangle". Click on the third constraints (add new constraints). And click on left, top, right as constraints and set the height to be 20. Click on the height constraints. So far, we add 4 constraints to the "view, represents a rectangle".
+
+5.  Click on "navigation bar" and "table view". Click on the add new constraints, and add left, top, right, bottom as 4 constraints to the "navigation bar" and "table view". 
+
+###################
+#    Set colors   #
+###################
+
+6.  Click on "view, represents a rectangle", on the right panel, choose the pen icon(show the attributes inspector). Set the background color to be orange.
+    Click on "navigation bar", choose the pen icon(show the attributes inspector). Set the Bar tint to be orange. Uncheck "translucent". Click on the title under the "navigation bar", change the name to be "News Reader". Click back on the "navigation bar", and change the title color to be white.
+
+###################
+#     Add cells   #
+###################
+
+7.  Click on "table view". On the right panel, let the "prototype cells" to be 1. Drag the new prototype cells a little bit larger.
+    Click on the "table view cell" and on the bottom right, type in "image". Drag the Image view into the screen and let it to be on the left center. Crop the image view to be a square. Click on add new constraints, set the height and width to be 130 and choose left. Add these three constraints to the image view.
+    Click on the image view, and click on the "align" at the bottom, check the vertically in the container and add constraints to the image view.
+    Type in "label" on the bottom right and drag the label in to the screen next to the image view. Change the label to be a anything you want. Change the "line" to be 0.    
+    Click on the "label". Add new constraints to it, set the left to be 8 and add.
+    Keep right clicked on the "label" and drag it to the image view. In the pop-out window, choose "top". This aligns the label to the top of the image view. Add another constraints, set the right to be 8 and add. Click on "update the frame" on the bottom.
+    Drag the label to the in the center. Set the text to be bold. Font->style->bold, size->16. UPDATE.
+
+    Drag in another label into the screen under the title. Set the font size to be 15. Set lines to be 0. Change the label content to what you want. Add new constraints to it, set left, top, right to be 8 and add these three constraints to it. UPDATE
+    Drag in another label as an author label. Set it on the bottom right corner. Add new constraints, let the right and bottom to be 0 and add. UPDATE. Set the font size to be 14 and color to be Dark grey. Change the name of the label to be "Author".
+    
+    Keep right clicked on the text label and drag it to the author label. In the pop-out window, choose vertical spacing. Click on the vertical line, let "relation"->"greater than or equal", constant->8, second item->bottom.
+
+###################
+# Create new Class#
+###################
+
+8.  Click on the table cell and type in "ArticleCell" in the identifier.
+    Right click on the project file and choose new file->Cocoa Touch Class, subclass of->UITableViewCell, class->ArticleCell.
+
+9.  Click on Main.storyboard->ArticleCell->show the identifier inspector(on the right panel)->Custom Class, class to be "ArticleCell". Click on the two circles(Show the Assistant Editor)
+
+10. To connect the outlet with the code panel, keep click on the ArticleCell on the view Controller scene. On the top code panel, Automatic->Manual->newsReader->NewsReader->ArticleCell.swift.
+
+11. Keep right click on the ImageView in the view controller scene, drag it into the code page before override. Give the name of "ImgView". Same to "Title", "Description", and "Author". If accidentally made a mistake, click on the "Show the connections inspector" and disconnect the connection.
+
+12. Right click on the project file->new file->Cocoa Touch Class, subclass of->NSObject, Class->Article. 
+    In the Article.swift, type in:
+    
+    var headline: String?
+    var text: String?
+    var author: String?
+    var url: String?
+    var imgurl: String?
+
+13. Click on Main.storyboard-> Table View-> | Manual->Automatic->ViewController.swift.
+    Keep right clicked on the Table View and drag it before the override and call the connection to be "TableView".
+    Go back to click on the ViewController.swift, change the class line "class ViewController: UIViewController {", to be 
+	"class ViewController: UIViewController, UITabBarDelegate, UITableViewDataSource {"
+
+    To let the table view listen to our class.
+
+    Delete,
+    "
+        override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    "
+   
+    Type in cellForRowAt, choose the first automatically function, 
+    "
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    "
+    
+    <#code#> is like this:
+    "
+    let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath)
+        return cell
+    "    
+    Note that "ArticleCell" is the identifier of the ArticleCell.
+
+
+
+    Type in "number", choose the first automatically function,
+    "
+    func numberOfSections(in tableView: UITableView) -> Int {
+        <#code#>
+    }
+    "
+    <#code#> is like this:
+    "
+    return 1
+    " 
+    
+
+    Type in "numberOfRowsInSection", choose the first automatically function, 
+    "
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    "
+    <#code#> is like this:
+    "
+    return 0
+    " 
+
+
+#———————————————————————————————————————Part 2——————————————————————————————————————#
+
+1.  Click on the Main.storyboard->Table View. Right clicked on the Table View and drag it to the View Controller, choose "data source" and "delegate(委托)".
+
+2.  Click on "ViewConstroller.swift", change the UITabDelegate to UITableViewDelegate. Change the func tableView as:
+    basic idea: add "as! ArticleCell" at the end of let line.
+    "
+    let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleCell
+    "
+3.  Write a function called "func fetchArticles(){}". Call fetchArticles in in the ovverride func viewDidLoad(){}, right after the super line.
+    
+4. Change the ViewConstroller.swift to be as this:
+"
+//
+//  ViewController.swift
+//  newsReader
+//
+//  Created by lindashen on 1/9/17.
+//  Copyright © 2017 lindashen. All rights reserved.
+//
+
+import UIKit
+
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var TableView: UITableView!
+
+    var articles: [Article]? = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        fetchArticles()
+    }
+
+    func fetchArticles() {
+    
+        let urlRequest = URLRequest(url: URL(string:"https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=top&apiKey=4fd46387a9f1413e8e2a07fd8911a0ec")!) //      ! is used to unwrap sth.
+        
+        let task = URLSession.shared.dataTask(with: urlRequest){ (data, reponse, error) in
+            
+            // data is for JSON, response is for the answer, error is for if there is sth happens
+            
+            // we would like to check if there is an error or not
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            self.articles = [Article]()
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]  // This gives us a dictionary of things.
+                if let articlesFromJson = json["articles"] as? [[String: AnyObject]] {
+                    for each_articleFromJson in articlesFromJson {
+                        let article = Article()
+                        if let author = each_articleFromJson["author"] as? String, let desc = each_articleFromJson["description"] as? String, let title = each_articleFromJson["title"] as? String, let imgtourl = each_articleFromJson["urlToImage"] as? String, let url = each_articleFromJson["url"] as? String {
+                            article.author = author
+                            article.headline = title
+                            article.imgurl = imgtourl
+                            article.text = desc
+                            article.url = url
+                        }
+                        self.articles?.append(article)
+                    }
+                }
+                DispatchQueue.main.sync {
+                    self.TableView.reloadData()
+                }
+            } catch let error {
+                print(error)
+            }
+        }
+        task.resume()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleCell
+        
+        cell.Title.text = self.articles?[indexPath.item].headline
+        cell.Description.text = self.articles?[indexPath.item].text
+        cell.Author.text = self.articles?[indexPath.item].author
+        cell.ImgView.downloadImage(from: (self.articles?[indexPath.item].imgurl!)!)
+        
+        return cell
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.articles?.count ?? 0  // if self.articles?.count == nil use 0, else use itself
+    }
+}
+
+extension UIImageView {
+    func downloadImage(from url: String){
+        let urlRequest = URLRequest(url: URL(string: url)!)
+        let task = URLSession.shared.dataTask(with: urlRequest) {(data, response, error) in
+            // here, data is the image
+            
+            // check if there is an error or not
+            if error != nil{
+                print(error)
+                return
+            }
+            DispatchQueue.main.sync {
+                //self.image is the UIImageView Extension
+                self.image = UIImage(data: data!)
+            }
+        }
+        // to fire the task
+        task.resume()
+    }
+}
+"
+
+
+#———————————————————————————————————————Part 3——————————————————————————————————————#
+
+###################
+#  Create views   #
+###################
+
+1.  Click on the Main.storyboard, type in "view Constroller" at the bottom right and drag it into the screen, just next to the previous view controller. Add "navigation bar", "view" as we did before. Type in "bar button" and drag it next to the News Reader and let it to be "< Back". Set the color to be white.
+    Type in "UI Web View" and drag it under the navigation bar. Let it spread to the rest of the space.
+
+2.  Constraints. Add constraints to "view", "navigation bar", "web view". Set left, top, right to  be 0 and add these 3 constraints to all of them.
+
+###############################
+# Create a class for web view #
+###############################
+
+3.  Right click on project file->new file->Cocoa Touch Class, subclass of->UIViewController, Class->WebViewController. In the pop-out code page, delete "override func didReceiveMemoryWarning(){}" function and the following commented lines.
+
+4.  Click on new View Controller Scene and choose the "show the identity inspector" on the right panel. Set the class to be "WebViewController".
+
+5.  Right before the override function, right click on WebView and drag it to the room before override function. Name it as "WebView".
+    In the viewDidLoad function, type in 
+     	"WebView.loadRequest(URLRequest(url: URL(string: url!)!))" after super line.
+    Initialize url at the first beginning after the @IBOutlet line, such as 
+	"var url: String?"
+
+    In the ViewController.swift, add 
+"
+// PART 3
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let Web_View_Constroller = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "web") as! WebViewController
+    }
+"
+    in the class function, right after tableview function. 
+    "web" here in the function is the identity ID of storyboard. To set it, go to Main.storyboard->Web View Controller, Identity(on the right panel)->Storyboard ID = web.
+
+
+    Add something in the tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath),
+"
+Web_View_Constroller.url = self.articles?[indexPath.item].url
+self.present(Web_View_Constroller, animated: true, completion: nil)
+"
+
+###############################
+# Back Button Touch function  #
+###############################
+
+6.  In the Web View Controller Scene, right click on the <Back button and drag it to the View Controller Scene. In the pop-out window, choose "show".
+
+7.  Click on Info.plist on the left panel, randomly click on a "+" button. Type in "App Transport Security Settings". 
+    Click on the arrow on the left, and click on "+" button. Add the first automatically name, "Allow Arbitrary Loads", let the value to be "YES".
+
+
