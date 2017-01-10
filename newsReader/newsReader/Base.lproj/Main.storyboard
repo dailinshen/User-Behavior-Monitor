@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -125,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-358" y="-8"/>
+            <point key="canvasLocation" x="-359.19999999999999" y="-8.5457271364317844"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="w1E-VY-BNa">
@@ -161,35 +162,60 @@
                                 </items>
                             </navigationBar>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pJR-Xg-5vt">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="573"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psr-GL-J1R">
-                                <rect key="frame" x="309" y="32" width="50" height="21"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKg-3Q-u9W">
+                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psr-GL-J1R">
+                                        <rect key="frame" x="8" y="5" width="50" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="wKy-c3-3K3" userLabel="width = 50"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydu-31-8f8">
+                                        <rect key="frame" x="317" y="5" width="50" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="1NS-Pl-ue5" userLabel="width = 50"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90701044350000004" green="0.43293037690000002" blue="0.33560267799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="wKy-c3-3K3" userLabel="width = 50"/>
+                                    <constraint firstItem="ydu-31-8f8" firstAttribute="firstBaseline" secondItem="Psr-GL-J1R" secondAttribute="firstBaseline" id="3gd-BF-5Vv"/>
+                                    <constraint firstItem="ydu-31-8f8" firstAttribute="trailing" secondItem="lKg-3Q-u9W" secondAttribute="trailingMargin" id="8oz-5R-tGM"/>
+                                    <constraint firstAttribute="height" constant="30" id="LYW-TI-XIi"/>
+                                    <constraint firstItem="Psr-GL-J1R" firstAttribute="leading" secondItem="lKg-3Q-u9W" secondAttribute="leadingMargin" id="P2O-o2-YCX"/>
+                                    <constraint firstItem="ydu-31-8f8" firstAttribute="baseline" secondItem="Psr-GL-J1R" secondAttribute="baseline" id="mqc-Df-1wh"/>
+                                    <constraint firstItem="Psr-GL-J1R" firstAttribute="centerY" secondItem="lKg-3Q-u9W" secondAttribute="centerY" id="nFI-dQ-Q0b"/>
+                                    <constraint firstItem="Psr-GL-J1R" firstAttribute="leading" secondItem="lKg-3Q-u9W" secondAttribute="leading" constant="8" id="pFj-4o-mwQ"/>
+                                    <constraint firstItem="Psr-GL-J1R" firstAttribute="top" secondItem="lKg-3Q-u9W" secondAttribute="top" constant="5" id="xbp-mD-PhU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pJR-Xg-5vt" firstAttribute="top" secondItem="Psr-GL-J1R" secondAttribute="bottom" constant="11" id="5SX-EG-iCS"/>
                             <constraint firstAttribute="trailing" secondItem="13f-wb-w5t" secondAttribute="trailing" id="5gz-pI-IlY"/>
                             <constraint firstItem="13f-wb-w5t" firstAttribute="top" secondItem="S3H-Nt-9bp" secondAttribute="bottom" id="Fhd-Vq-aA1"/>
-                            <constraint firstAttribute="trailing" secondItem="pJR-Xg-5vt" secondAttribute="trailing" id="H4O-GD-sb8"/>
                             <constraint firstItem="5wy-9m-fAR" firstAttribute="top" secondItem="iTW-j8-U0z" secondAttribute="top" id="JmI-6o-mm7"/>
-                            <constraint firstItem="pJR-Xg-5vt" firstAttribute="leading" secondItem="iTW-j8-U0z" secondAttribute="leading" id="KxB-YQ-2Oy"/>
+                            <constraint firstItem="lKg-3Q-u9W" firstAttribute="leading" secondItem="13f-wb-w5t" secondAttribute="leading" id="Kso-sx-2Md"/>
+                            <constraint firstItem="lKg-3Q-u9W" firstAttribute="trailing" secondItem="13f-wb-w5t" secondAttribute="trailing" id="OoC-Di-Tx1"/>
+                            <constraint firstItem="lKg-3Q-u9W" firstAttribute="trailing" secondItem="pJR-Xg-5vt" secondAttribute="trailing" id="Qfj-Nv-54r"/>
                             <constraint firstItem="pJR-Xg-5vt" firstAttribute="top" secondItem="13f-wb-w5t" secondAttribute="bottom" id="SEr-8x-Nov"/>
-                            <constraint firstItem="Psr-GL-J1R" firstAttribute="centerY" secondItem="13f-wb-w5t" secondAttribute="centerY" id="dEt-GJ-GWG"/>
+                            <constraint firstItem="lKg-3Q-u9W" firstAttribute="leading" secondItem="pJR-Xg-5vt" secondAttribute="leading" id="cFF-E1-VZp"/>
                             <constraint firstItem="5wy-9m-fAR" firstAttribute="leading" secondItem="iTW-j8-U0z" secondAttribute="leading" id="dhx-Vu-YMP"/>
-                            <constraint firstItem="pJR-Xg-5vt" firstAttribute="bottom" secondItem="ckU-bP-xRC" secondAttribute="top" id="f2a-J1-1r4"/>
+                            <constraint firstItem="ckU-bP-xRC" firstAttribute="top" secondItem="pJR-Xg-5vt" secondAttribute="bottom" constant="30" id="qqp-La-6QN"/>
+                            <constraint firstItem="lKg-3Q-u9W" firstAttribute="bottom" secondItem="ckU-bP-xRC" secondAttribute="top" id="tv2-Se-FPu"/>
                             <constraint firstItem="13f-wb-w5t" firstAttribute="leading" secondItem="iTW-j8-U0z" secondAttribute="leading" id="wQ6-Yo-KW2"/>
                             <constraint firstItem="5wy-9m-fAR" firstAttribute="bottom" secondItem="13f-wb-w5t" secondAttribute="top" id="xPg-I2-f2T"/>
                             <constraint firstAttribute="trailing" secondItem="5wy-9m-fAR" secondAttribute="trailing" id="xwT-YW-L8j"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Psr-GL-J1R" secondAttribute="trailing" id="zZw-bp-jno"/>
                         </constraints>
                     </view>
                     <connections>

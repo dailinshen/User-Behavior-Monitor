@@ -67,13 +67,3 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         }
     }
 }
-
-
-
-
-
-
-
-
-
-

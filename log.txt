@@ -358,7 +358,11 @@ func scrollViewDidScroll(_ scrollView: UIScrollView) {
     
 3.  Don't forget to add another method to the class of WebViewController ——> UIScrollViewDelegate.
 
-             
+4.  Add a label to record the percentage of the scroll. Put it on the bottom right corner.
+
+5.  Add a orange monitor bar at the bottom of the web view page.
+
+
 /////////////////////////////////////////////////////////////////////////////
 //                                  Next Step                              //
 // 1. Calculate the scroll percentage at each time and mirror it on the label. //
