@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WebViewController: UIViewController {  //  0110, add UIScrollViewDelegate,  UIWebViewDelegate
+class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add UIScrollViewDelegate
     
     @IBOutlet weak var ClockLabel: UILabel!
     
@@ -20,6 +20,8 @@ class WebViewController: UIViewController {  //  0110, add UIScrollViewDelegate,
     var minutes = Int(0)
     var ClockTimer = Timer()
     
+    private var lastContentOffset = CGFloat(0)
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -29,7 +31,23 @@ class WebViewController: UIViewController {  //  0110, add UIScrollViewDelegate,
         
         // this url is the same url in our json file in the viewconstroller.swift
         WebView.loadRequest(URLRequest(url: URL(string: url!)!))
+        WebView.scrollView.delegate = self
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (self.lastContentOffset > scrollView.contentOffset.y) {
+            // move up
+            print("up")
+        }
+        else if (self.lastContentOffset < scrollView.contentOffset.y) {
+            // move down
+            print("down")
+        }
+        
+        // update the new position acquired
+        self.lastContentOffset = scrollView.contentOffset.y
+    }
+    
     
     func updateClockTime(){
 //        ClockLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: DateFormatter.Style.none, timeStyle: DateFormatter.Style.full)
@@ -49,3 +67,13 @@ class WebViewController: UIViewController {  //  0110, add UIScrollViewDelegate,
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

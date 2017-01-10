@@ -327,9 +327,41 @@ func updateClockTime(){
         }
     }
 "
-                    
+
+#———————————————————————————————————————Part 5——————————————————————————————————————#
+
+#########################################
+#    Add Scroll Detection to WebView    #
+#########################################
+
+1.  Click on the WebViewController.swift code page, and initialize a private variable "lastContentOffest = CGFloat(0)". In the function of viewDidLoad(), add following command line: 
+		"WebView.scrollView.delegate = self"
+right after the load request.
+
+2.  Add a system built-in function called scrollViewDidScroll, as follows,
+"
+func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (self.lastContentOffset > scrollView.contentOffset.y) {
+            // move up
+            print("up")
+        }
+        else if (self.lastContentOffset < scrollView.contentOffset.y) {
+            // move down
+            print("down")
+        }
+        
+        // update the new position acquired
+        self.lastContentOffset = scrollView.contentOffset.y
+    }
+
+"
+    
+3.  Don't forget to add another method to the class of WebViewController ——> UIScrollViewDelegate.
+
+             
 /////////////////////////////////////////////////////////////////////////////
 //                                  Next Step                              //
-//         1. Need to save the timer value once dashboard is clicked.      //
-//         2. Scrolling detection under WebView partition.                 //
+// 1. Calculate the scroll percentage at each time and mirror it on the label. //
+// 2. Need to save the timer value once dashboard is clicked together with the scroll percentage.      //
+// 3. Right now, the scroll detection is too sensitive. Need modify on the parameters. //
 /////////////////////////////////////////////////////////////////////////////
