@@ -164,23 +164,36 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psr-GL-J1R">
+                                <rect key="frame" x="309" y="32" width="50" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="wKy-c3-3K3" userLabel="width = 50"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pJR-Xg-5vt" firstAttribute="top" secondItem="Psr-GL-J1R" secondAttribute="bottom" constant="11" id="5SX-EG-iCS"/>
                             <constraint firstAttribute="trailing" secondItem="13f-wb-w5t" secondAttribute="trailing" id="5gz-pI-IlY"/>
                             <constraint firstItem="13f-wb-w5t" firstAttribute="top" secondItem="S3H-Nt-9bp" secondAttribute="bottom" id="Fhd-Vq-aA1"/>
                             <constraint firstAttribute="trailing" secondItem="pJR-Xg-5vt" secondAttribute="trailing" id="H4O-GD-sb8"/>
                             <constraint firstItem="5wy-9m-fAR" firstAttribute="top" secondItem="iTW-j8-U0z" secondAttribute="top" id="JmI-6o-mm7"/>
                             <constraint firstItem="pJR-Xg-5vt" firstAttribute="leading" secondItem="iTW-j8-U0z" secondAttribute="leading" id="KxB-YQ-2Oy"/>
                             <constraint firstItem="pJR-Xg-5vt" firstAttribute="top" secondItem="13f-wb-w5t" secondAttribute="bottom" id="SEr-8x-Nov"/>
+                            <constraint firstItem="Psr-GL-J1R" firstAttribute="centerY" secondItem="13f-wb-w5t" secondAttribute="centerY" id="dEt-GJ-GWG"/>
                             <constraint firstItem="5wy-9m-fAR" firstAttribute="leading" secondItem="iTW-j8-U0z" secondAttribute="leading" id="dhx-Vu-YMP"/>
                             <constraint firstItem="pJR-Xg-5vt" firstAttribute="bottom" secondItem="ckU-bP-xRC" secondAttribute="top" id="f2a-J1-1r4"/>
                             <constraint firstItem="13f-wb-w5t" firstAttribute="leading" secondItem="iTW-j8-U0z" secondAttribute="leading" id="wQ6-Yo-KW2"/>
                             <constraint firstItem="5wy-9m-fAR" firstAttribute="bottom" secondItem="13f-wb-w5t" secondAttribute="top" id="xPg-I2-f2T"/>
                             <constraint firstAttribute="trailing" secondItem="5wy-9m-fAR" secondAttribute="trailing" id="xwT-YW-L8j"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Psr-GL-J1R" secondAttribute="trailing" id="zZw-bp-jno"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ClockLabel" destination="Psr-GL-J1R" id="3bJ-WB-oFc"/>
                         <outlet property="WebView" destination="pJR-Xg-5vt" id="Qc3-ZX-cGA"/>
                     </connections>
                 </viewController>

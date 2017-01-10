@@ -88,6 +88,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         Web_View_Constroller.url = self.articles?[indexPath.item].url
         
         self.present(Web_View_Constroller, animated: true, completion: nil)
+        
     }
     
 }

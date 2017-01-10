@@ -295,3 +295,41 @@ self.present(Web_View_Constroller, animated: true, completion: nil)
     Click on the arrow on the left, and click on "+" button. Add the first automatically name, "Allow Arbitrary Loads", let the value to be "YES".
 
 
+
+#———————————————————————————————————————Part 4——————————————————————————————————————#
+
+###############################
+#    Add Timer to Web view    #
+###############################
+
+1.  Click on Main.storyboard, type in "Label" at the bottom right corner and drag it to the screen, on the top right corner of the webviewcontroller scene. Set it properly.
+
+2.  Click on WebViewController.swift. Right clicked on the new label component and drag it to the WebViewController.swift right before WebView component. 
+    Initialize three new variables including "seconds = Int(0)", "minutes = Int(0)", and "ClockTimer = Timer()".
+    Right in the viewDidLoad function, let ClockTimer to be Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("updateClockTime"), userInfo: nil, repeats: true). Selector chooses the function and in the following part. 
+    Write a function called updateClockTime(){} , as follows:
+"
+func updateClockTime(){
+//        ClockLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: DateFormatter.Style.none, timeStyle: DateFormatter.Style.full)
+        seconds += 1
+        if (seconds == 60){
+            seconds = 0
+            minutes += 1
+        }
+        if (seconds < 10 && minutes < 10) {
+            ClockLabel.text = "0\(minutes):0\(seconds)"
+        } else if (seconds < 10 && minutes > 9) {
+            ClockLabel.text = "\(minutes):0\(seconds)"
+        } else if (seconds > 9 && minutes < 10) {
+            ClockLabel.text = "0\(minutes):\(seconds)"
+        } else {
+            ClockLabel.text = "\(minutes):\(seconds)"
+        }
+    }
+"
+                    
+/////////////////////////////////////////////////////////////////////////////
+//                                  Next Step                              //
+//         1. Need to save the timer value once dashboard is clicked.      //
+//         2. Scrolling detection under WebView partition.                 //
+/////////////////////////////////////////////////////////////////////////////
