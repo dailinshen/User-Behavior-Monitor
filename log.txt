@@ -396,12 +396,36 @@ guard let myURL = URL(string: (url)!) else {
         }
 "
 
-2.   
+##################################
+#     Check DOM's visibility     #
+##################################
+
+2.   Useful references.
+http://stackoverflow.com/questions/32891466/uitesting-xcode-7-how-to-tell-if-xcuielement-is-visible
+
+
+#———————————————————————————————————————Part 7——————————————————————————————————————#
+
+###########################
+#     Save & send data    #
+###########################
+
+1.  Add save and send button.
+    Create a button in the center of the bottom panel. Name it as "Save & Send" button. Right click it and drag to the WebViewController.swift, name it as SaveSubmitBtn. Right after the function of updateClockTime, right click on the button in the storyboard and drag to the space beneath the updateClockTime, choose IBAction, and name it as SaveSubmitBtnPressed. Inside the function, type in 
+"
+print("pressed")
+"
+    So far, once we click on the button, "pressed" will show up on the console.
+
+2.  Already created an array to store time and affiliated percentage for each article.
+
 
 /////////////////////////////////////////////////////////////////////////////
 //                                  Next Step                              //
 // 1. Get the element in the url. HTML and Javascript. Assign ID to each DOM.    //
 // 2. Need to save the timer value once dashboard is clicked together with the scroll percentage. //
+// 3. Finish part 6 step 2. //
+// 4. Finish part 7 step 2. //
 /////////////////////////////////////////////////////////////////////////////
 //                                  Some Notes                             //
 // 1. Because New York Times request sign-ins after several attempts of reading, I changed the news api to Reuters: https://newsapi.org/v1/articles?source=reuters&sortBy=top&apiKey=4fd46387a9f1413e8e2a07fd8911a0ec 

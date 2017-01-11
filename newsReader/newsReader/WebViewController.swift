@@ -13,6 +13,8 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
     @IBOutlet weak var ClockLabel: UILabel!
     @IBOutlet weak var PercentageLabel: UILabel!
     
+    @IBOutlet weak var SaveSubmitBtn: UIButton!
+    
     @IBOutlet weak var WebView: UIWebView!
     
     var url: String?
@@ -20,6 +22,10 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
     var seconds = Int(0)
     var minutes = Int(0)
     var ClockTimer = Timer()
+    
+    var percentage_store: Double = 0.0
+    
+    var store_data = [Array<Any>]()
     
     override func viewDidLoad() {
         
@@ -33,6 +39,11 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         
         WebView.scrollView.delegate = self
         
+        
+        
+        
+        
+        // ------------------This part is the general html. Need to be speciic.------------------
         guard let myURL = URL(string: (url)!) else {
             print("Error")
             return
@@ -40,10 +51,15 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         do {
             let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
             print("HTML: \r\(myHTMLString)")
-            
         } catch let error {
             print("Error")
         }
+        // ------------------This part is the general html. Need to be speciic.------------------
+        
+        
+        
+        
+        
     }
     
     
@@ -53,8 +69,9 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         // Note that scrollView.contentOffset.y (maximum) + WebView.fram.size.height = scrollView.contentSize.height
         
         let percentage: Double = Double(round(scrollView.contentOffset.y / (scrollView.contentSize.height - WebView.frame.size.height) * 10000) / 100)
-        let string_percentage = String(percentage)
         
+        let string_percentage = String(percentage)
+        percentage_store = percentage
         PercentageLabel.text = "\(string_percentage)%"
         
 //        let script = "alert('Javascript')"
@@ -89,6 +106,29 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         } else {
             ClockLabel.text = "\(minutes):\(seconds)"
         }
+        
+        
+        let currentvalues: [Double] = [Double(seconds + minutes * 60), percentage_store]
+        store_data.append(currentvalues)
+        print(store_data)
+    }
+    
+    @IBAction func SaveSubmitBtnPressed(_ sender: Any) {
+        print("pressed")
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -168,7 +168,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKg-3Q-u9W">
                                 <rect key="frame" x="0.0" y="637" width="375" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psr-GL-J1R">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psr-GL-J1R">
                                         <rect key="frame" x="8" y="5" width="50" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="wKy-c3-3K3" userLabel="width = 50"/>
@@ -186,6 +186,17 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejW-sL-O0A">
+                                        <rect key="frame" x="152" y="0.0" width="109" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
+                                        <state key="normal" title="Save &amp; Send">
+                                            <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="SaveSubmitBtnPressed:" destination="G3i-X5-WUx" eventType="touchUpInside" id="114-Gy-a90"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90701044350000004" green="0.43293037690000002" blue="0.33560267799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -221,6 +232,7 @@
                     <connections>
                         <outlet property="ClockLabel" destination="Psr-GL-J1R" id="3bJ-WB-oFc"/>
                         <outlet property="PercentageLabel" destination="ydu-31-8f8" id="ZWA-Ef-aBJ"/>
+                        <outlet property="SaveSubmitBtn" destination="ejW-sL-O0A" id="EaM-Dt-8fj"/>
                         <outlet property="WebView" destination="pJR-Xg-5vt" id="Qc3-ZX-cGA"/>
                     </connections>
                 </viewController>
