@@ -362,10 +362,25 @@ func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
 5.  Add a orange monitor bar at the bottom of the web view page.
 
+6.  In WebViewController.swift, under scrollViewDidScroll function, add the following code. (This is used to print the percentage of each scroll.)
+"
+let percentage: Double = Double(round(scrollView.contentOffset.y / (scrollView.contentSize.height - WebView.frame.size.height) * 10000) / 100)
+        let string_percentage = String(percentage)
+        
+        print("\(string_percentage)%")
+"
+
+7.   Click on Main.storyboard, right click on percentage label and drag it to the WebViewController.swift, under the class of WebViewController. Name it as "PercentageLabel". Comment out "private var lastContentOffset = CGFloat(0)" and STEP 2. Under the scrollViewDidScroll function, replace the print message with "PercentageLabel.text = "\(string_percentage)%"". 
+     Initiate the percentage label to be 0.0% on the right panel.
+
 
 /////////////////////////////////////////////////////////////////////////////
 //                                  Next Step                              //
-// 1. Calculate the scroll percentage at each time and mirror it on the label. //
-// 2. Need to save the timer value once dashboard is clicked together with the scroll percentage.      //
-// 3. Right now, the scroll detection is too sensitive. Need modify on the parameters. //
+// 1. Get the element in the url. HTML and Javascript. Assign ID to each DOM.    //
+// 2. Need to save the timer value once dashboard is clicked together with the scroll percentage. //
+/////////////////////////////////////////////////////////////////////////////
+//                                  Some Notes                             //
+// 1. Because New York Times request sign-ins after several attempts of reading, I changed the news api to Reuters: https://newsapi.org/v1/articles?source=reuters&sortBy=top&apiKey=4fd46387a9f1413e8e2a07fd8911a0ec 
+      This should be fixed in the future. //
+// 2. Design a button to show the time message and the percentage message instead of showing them at the bottom. It's not beautiful.  // 
 /////////////////////////////////////////////////////////////////////////////

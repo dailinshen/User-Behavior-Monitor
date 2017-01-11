@@ -11,6 +11,7 @@ import UIKit
 class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add UIScrollViewDelegate
     
     @IBOutlet weak var ClockLabel: UILabel!
+    @IBOutlet weak var PercentageLabel: UILabel!
     
     @IBOutlet weak var WebView: UIWebView!
     
@@ -20,7 +21,7 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
     var minutes = Int(0)
     var ClockTimer = Timer()
     
-    private var lastContentOffset = CGFloat(0)
+//    private var lastContentOffset = CGFloat(0)
     
     override func viewDidLoad() {
         
@@ -35,17 +36,26 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (self.lastContentOffset > scrollView.contentOffset.y) {
-            // move up
-            print("up")
-        }
-        else if (self.lastContentOffset < scrollView.contentOffset.y) {
-            // move down
-            print("down")
-        }
         
-        // update the new position acquired
-        self.lastContentOffset = scrollView.contentOffset.y
+        // scrollView.contentSize.height is the maximum height of the current page.
+        // Note that scrollView.contentOffset.y (maximum) + WebView.fram.size.height = scrollView.contentSize.height
+        
+        let percentage: Double = Double(round(scrollView.contentOffset.y / (scrollView.contentSize.height - WebView.frame.size.height) * 10000) / 100)
+        let string_percentage = String(percentage)
+        
+        PercentageLabel.text = "\(string_percentage)%"
+        
+//        if (self.lastContentOffset > scrollView.contentOffset.y) {
+//            // move up
+//            print("up")
+//        }
+//        else if (self.lastContentOffset < scrollView.contentOffset.y) {
+//            // move down
+//            print("down")
+//        }
+//        
+//        // update the new position acquired
+//        self.lastContentOffset = scrollView.contentOffset.y
     }
     
     
