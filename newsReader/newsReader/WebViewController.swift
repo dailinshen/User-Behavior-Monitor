@@ -21,8 +21,6 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
     var minutes = Int(0)
     var ClockTimer = Timer()
     
-//    private var lastContentOffset = CGFloat(0)
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -32,12 +30,26 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         
         // this url is the same url in our json file in the viewconstroller.swift
         WebView.loadRequest(URLRequest(url: URL(string: url!)!))
+        
         WebView.scrollView.delegate = self
+        
+        guard let myURL = URL(string: (url)!) else {
+            print("Error")
+            return
+        }
+        do {
+            let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
+            print("HTML: \r\(myHTMLString)")
+            
+        } catch let error {
+            print("Error")
+        }
     }
+    
+    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        // scrollView.contentSize.height is the maximum height of the current page.
         // Note that scrollView.contentOffset.y (maximum) + WebView.fram.size.height = scrollView.contentSize.height
         
         let percentage: Double = Double(round(scrollView.contentOffset.y / (scrollView.contentSize.height - WebView.frame.size.height) * 10000) / 100)
@@ -45,22 +57,24 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         
         PercentageLabel.text = "\(string_percentage)%"
         
-//        if (self.lastContentOffset > scrollView.contentOffset.y) {
-//            // move up
-//            print("up")
+//        let script = "alert('Javascript')"
+//        print(WebView.stringByEvaluatingJavaScript(from: script))
+        
+//        let currentString = WebView.request?.url?.absoluteString
+//        guard let myURL = URL(string: (currentString)!) else {
+//            print("Error")
+//            return
 //        }
-//        else if (self.lastContentOffset < scrollView.contentOffset.y) {
-//            // move down
-//            print("down")
+//        do {
+//            let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
+//            print("HTML: \(myHTMLString)")
+//        } catch let error {
+//            print("Error")
 //        }
-//        
-//        // update the new position acquired
-//        self.lastContentOffset = scrollView.contentOffset.y
     }
     
-    
     func updateClockTime(){
-//        ClockLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: DateFormatter.Style.none, timeStyle: DateFormatter.Style.full)
+        
         seconds += 1
         if (seconds == 60){
             seconds = 0
@@ -76,4 +90,5 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
             ClockLabel.text = "\(minutes):\(seconds)"
         }
     }
+    
 }

@@ -374,6 +374,30 @@ let percentage: Double = Double(round(scrollView.contentOffset.y / (scrollView.c
      Initiate the percentage label to be 0.0% on the right panel.
 
 
+
+#———————————————————————————————————————Part 6——————————————————————————————————————#
+
+#########################################
+#     Get the components of the url     #
+#########################################
+
+1.  First, get the HTML content based on url. In the WebViewController.swift, under the function of viewDidLoad(), type in 
+"
+guard let myURL = URL(string: (url)!) else {
+            print("Error")
+            return
+        }
+        do {
+            let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
+            print("HTML: \r\(myHTMLString)")
+            
+        } catch let error {
+            print("Error")
+        }
+"
+
+2.   
+
 /////////////////////////////////////////////////////////////////////////////
 //                                  Next Step                              //
 // 1. Get the element in the url. HTML and Javascript. Assign ID to each DOM.    //
