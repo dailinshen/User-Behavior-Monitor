@@ -417,18 +417,67 @@ print("pressed")
 "
     So far, once we click on the button, "pressed" will show up on the console.
 
-2.  Already created an array to store time and affiliated percentage for each article.
+2.  Already created an array to store time and affiliated percentage for each article. Here goes how to save the array to local disk.
+    First, in the WebViewController.swift, change store_data to be "var store_data = [String]()". 
+    Then under the function of updateClockTime(), change the currentvalues to be "let currentvalues = String(seconds + minutes * 60) + "," + String(percentage_store)". 
+    Next, under the function of SaveSubmitBtnPressed, add the following stuff, 
+"
+// save time and percentage to local disk.
+        do {
+            // get the documents folder url
+            
+            let documentDirectoryURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let title_temp = story_title.replacingOccurrences(of: " ", with: "_", options: String.CompareOptions.literal, range: nil)
+            
+            // create the destination url for the text file to be saved
+            // This url will be used to send to AWS account. 
+            
+            let fileDestinationUrl = documentDirectoryURL.appendingPathComponent("\(title_temp).txt")
+            let text = store_data.joined(separator: "\n")
+            do {
+                // writing to disk
+                try text.write(to: fileDestinationUrl, atomically: false, encoding: .utf8)
+                
+                // saving was successful. any code posterior code goes here
+                // reading from disk
+                do {
+                    // success notification
+                    print("successfully saved at\(fileDestinationUrl)")
+                } catch let error as NSError {
+                    print("error loading contentsOf url \(fileDestinationUrl)")
+                    print(error.localizedDescription)
+                }
+            } catch let error as NSError {
+                print("error writing to url \(fileDestinationUrl)")
+                print(error.localizedDescription)
+            }
+        } catch let error as NSError {
+            print("error getting documentDirectoryURL")
+            print(error.localizedDescription)
+        }
+"
+    Don't forget to create a new variable called story_title at the first beginning of WebViewController.swift, as follows,
+"
+var story_title: String = "title"
+"
+    To connect the story_title with the title in the ViewController, go back to ViewController.swift, under the function following // PART 3 comment, add 
+"
+Web_View_Constroller.story_title = (self.articles?[indexPath.item].headline)!
+" 
+    Here, the saved txt file has the name of article title.
+
+3.  So far, we get the time data and percentage data in our local disk, url is stored in "fileDestinationUrl" (inside WebViewController.swift).
+
 
 
 /////////////////////////////////////////////////////////////////////////////
 //                                  Next Step                              //
-// 1. Get the element in the url. HTML and Javascript. Assign ID to each DOM.    //
-// 2. Need to save the timer value once dashboard is clicked together with the scroll percentage. //
-// 3. Finish part 6 step 2. //
-// 4. Finish part 7 step 2. //
+// 1. Get the element in the url. HTML and Javascript. Assign ID to each DOM. Finish part 6 step 2. //
+// 2. Future step, send the user's information data (at least the device number). //
 /////////////////////////////////////////////////////////////////////////////
 //                                  Some Notes                             //
 // 1. Because New York Times request sign-ins after several attempts of reading, I changed the news api to Reuters: https://newsapi.org/v1/articles?source=reuters&sortBy=top&apiKey=4fd46387a9f1413e8e2a07fd8911a0ec 
       This should be fixed in the future. //
 // 2. Design a button to show the time message and the percentage message instead of showing them at the bottom. It's not beautiful.  // 
+// 3. The saved file is named with the article name. Need to figure how to add the device information in the txt file or the folder of the saved file. Hence, in the future step when analyzing the data, I have a sense of who is the person and get his/her interest based on the sent data and text analysis of the paragraph. //
 /////////////////////////////////////////////////////////////////////////////

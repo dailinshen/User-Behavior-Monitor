@@ -93,6 +93,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         Web_View_Constroller.url = self.articles?[indexPath.item].url
         
+        Web_View_Constroller.story_title = (self.articles?[indexPath.item].headline)!
+        
         self.present(Web_View_Constroller, animated: true, completion: nil)
         
     }

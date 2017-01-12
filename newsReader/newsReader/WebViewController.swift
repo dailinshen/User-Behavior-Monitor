@@ -19,13 +19,15 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
     
     var url: String?
     
+    var story_title: String = "title"
+    
     var seconds = Int(0)
     var minutes = Int(0)
     var ClockTimer = Timer()
     
     var percentage_store: Double = 0.0
     
-    var store_data = [Array<Any>]()
+    var store_data = [String]()
     
     override func viewDidLoad() {
         
@@ -39,9 +41,7 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         
         WebView.scrollView.delegate = self
         
-        
-        
-        
+        store_data.append("Time,Percentage")
         
         // ------------------This part is the general html. Need to be speciic.------------------
         guard let myURL = URL(string: (url)!) else {
@@ -55,11 +55,6 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
             print("Error")
         }
         // ------------------This part is the general html. Need to be speciic.------------------
-        
-        
-        
-        
-        
     }
     
     
@@ -108,16 +103,61 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         }
         
         
-        let currentvalues: [Double] = [Double(seconds + minutes * 60), percentage_store]
+        let currentvalues = String(seconds + minutes * 60) + "," + String(percentage_store)
         store_data.append(currentvalues)
-        print(store_data)
+//        print(store_data)
     }
     
     @IBAction func SaveSubmitBtnPressed(_ sender: Any) {
         print("pressed")
+        
+        
+        // save time and percentage to local disk.
+        do {
+            // get the documents folder url
+            
+            let documentDirectoryURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let title_temp = story_title.replacingOccurrences(of: " ", with: "_", options: String.CompareOptions.literal, range: nil)
+            
+            // create the destination url for the text file to be saved
+            // This url will be used to send to AWS account. 
+            
+            let fileDestinationUrl = documentDirectoryURL.appendingPathComponent("\(title_temp).txt")
+            let text = store_data.joined(separator: "\n")
+            do {
+                // writing to disk
+                try text.write(to: fileDestinationUrl, atomically: false, encoding: .utf8)
+                
+                // saving was successful. any code posterior code goes here
+                // reading from disk
+                do {
+                    // success notification
+                    print("successfully saved at\(fileDestinationUrl)")
+                } catch let error as NSError {
+                    print("error loading contentsOf url \(fileDestinationUrl)")
+                    print(error.localizedDescription)
+                }
+            } catch let error as NSError {
+                print("error writing to url \(fileDestinationUrl)")
+                print(error.localizedDescription)
+            }
+        } catch let error as NSError {
+            print("error getting documentDirectoryURL")
+            print(error.localizedDescription)
+        }
     }
     
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
