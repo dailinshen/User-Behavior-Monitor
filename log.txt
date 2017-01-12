@@ -402,13 +402,18 @@ guard let myURL = URL(string: (url)!) else {
 
 2.   Useful references.
 http://stackoverflow.com/questions/32891466/uitesting-xcode-7-how-to-tell-if-xcuielement-is-visible
+     It seems like we could use "stringByEvaluatingJavascript".
+"
+self.WebView.stringByEvaluatingJavaScript(from: "alert('This is a javascript')")
+"
+
 
 
 #———————————————————————————————————————Part 7——————————————————————————————————————#
 
-###########################
-#     Save & send data    #
-###########################
+################################
+#     Save data to local disk  #
+################################
 
 1.  Add save and send button.
     Create a button in the center of the bottom panel. Name it as "Save & Send" button. Right click it and drag to the WebViewController.swift, name it as SaveSubmitBtn. Right after the function of updateClockTime, right click on the button in the storyboard and drag to the space beneath the updateClockTime, choose IBAction, and name it as SaveSubmitBtnPressed. Inside the function, type in 
@@ -468,16 +473,22 @@ Web_View_Constroller.story_title = (self.articles?[indexPath.item].headline)!
 
 3.  So far, we get the time data and percentage data in our local disk, url is stored in "fileDestinationUrl" (inside WebViewController.swift).
 
+################################
+#      Send to AWS account     #
+################################
 
+4.  
 
 /////////////////////////////////////////////////////////////////////////////
 //                                  Next Step                              //
-// 1. Get the element in the url. HTML and Javascript. Assign ID to each DOM. Finish part 6 step 2. //
+// 1. Get the element in the url. HTML and Javascript. Assign ID to each DOM. Finish part 6 STEP 2. //
 // 2. Future step, send the user's information data (at least the device number). //
+// 3. Finish Part 7 STEP 4.
 /////////////////////////////////////////////////////////////////////////////
 //                                  Some Notes                             //
 // 1. Because New York Times request sign-ins after several attempts of reading, I changed the news api to Reuters: https://newsapi.org/v1/articles?source=reuters&sortBy=top&apiKey=4fd46387a9f1413e8e2a07fd8911a0ec 
       This should be fixed in the future. //
 // 2. Design a button to show the time message and the percentage message instead of showing them at the bottom. It's not beautiful.  // 
 // 3. The saved file is named with the article name. Need to figure how to add the device information in the txt file or the folder of the saved file. Hence, in the future step when analyzing the data, I have a sense of who is the person and get his/her interest based on the sent data and text analysis of the paragraph. //
+// 4. Need to create a button to notify me at which point is the page fully loaded. Or use the UIActivityIndicator, see reference: http://sweettutos.com/2012/09/27/loading-url-with-an-uiactivityindicator/. Otherwise, the time flag is not accurate at all. //
 /////////////////////////////////////////////////////////////////////////////

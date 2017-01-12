@@ -44,20 +44,22 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         store_data.append("Time,Percentage")
         
         // ------------------This part is the general html. Need to be speciic.------------------
-        guard let myURL = URL(string: (url)!) else {
-            print("Error")
-            return
-        }
-        do {
-            let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
-            print("HTML: \r\(myHTMLString)")
-        } catch let error {
-            print("Error")
-        }
+//        guard let myURL = URL(string: (url)!) else {
+//            print("Error")
+//            return
+//        }
+//        do {
+//            let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
+//            print("HTML: \r\(myHTMLString)")
+//        } catch let error {
+//            print("Error")
+//        }
+        
+        // It seems like we could use stringByEvaluatingJavascript to write a jQuery based on the HTML and each scroll behavior performed by the user.
+        //        self.WebView.stringByEvaluatingJavaScript(from: "alert('This is a javascript')")
+        
         // ------------------This part is the general html. Need to be speciic.------------------
     }
-    
-    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
@@ -68,21 +70,6 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         let string_percentage = String(percentage)
         percentage_store = percentage
         PercentageLabel.text = "\(string_percentage)%"
-        
-//        let script = "alert('Javascript')"
-//        print(WebView.stringByEvaluatingJavaScript(from: script))
-        
-//        let currentString = WebView.request?.url?.absoluteString
-//        guard let myURL = URL(string: (currentString)!) else {
-//            print("Error")
-//            return
-//        }
-//        do {
-//            let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
-//            print("HTML: \(myHTMLString)")
-//        } catch let error {
-//            print("Error")
-//        }
     }
     
     func updateClockTime(){
@@ -102,15 +89,12 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
             ClockLabel.text = "\(minutes):\(seconds)"
         }
         
-        
         let currentvalues = String(seconds + minutes * 60) + "," + String(percentage_store)
         store_data.append(currentvalues)
-//        print(store_data)
     }
     
     @IBAction func SaveSubmitBtnPressed(_ sender: Any) {
         print("pressed")
-        
         
         // save time and percentage to local disk.
         do {
