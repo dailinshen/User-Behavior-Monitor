@@ -402,7 +402,7 @@ guard let myURL = URL(string: (url)!) else {
 
 2.   Useful references.
 http://stackoverflow.com/questions/32891466/uitesting-xcode-7-how-to-tell-if-xcuielement-is-visible
-     It seems like we could use "stringByEvaluatingJavascript".
+     It seems like we could use "stringByEvaluatingJavascript". Details of jQuery, please refer to the Final Project for Computation Journalism class Fall 2016.
 "
 self.WebView.stringByEvaluatingJavaScript(from: "alert('This is a javascript')")
 "
