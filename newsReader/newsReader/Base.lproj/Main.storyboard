@@ -48,7 +48,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="159"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OcR-za-FGN" id="uYb-jC-D2x">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="158"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="158.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZoK-w8-hZD">
@@ -58,7 +58,7 @@
                                                         <constraint firstAttribute="width" constant="135" id="wEI-yb-xI1"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a news story about Donal Trump. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpV-M9-upE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a news story about Donald Trump. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpV-M9-upE">
                                                     <rect key="frame" x="151" y="34.5" width="208" height="36"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -186,9 +186,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejW-sL-O0A">
-                                        <rect key="frame" x="152" y="0.0" width="109" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejW-sL-O0A">
+                                        <rect key="frame" x="104" y="0.0" width="157" height="30"/>
                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
                                         <state key="normal" title="Save &amp; Send">
                                             <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -200,14 +199,18 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.90701044350000004" green="0.43293037690000002" blue="0.33560267799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="ejW-sL-O0A" firstAttribute="top" secondItem="lKg-3Q-u9W" secondAttribute="top" id="0VE-3i-f9r"/>
                                     <constraint firstItem="ydu-31-8f8" firstAttribute="firstBaseline" secondItem="Psr-GL-J1R" secondAttribute="firstBaseline" id="3gd-BF-5Vv"/>
+                                    <constraint firstItem="ydu-31-8f8" firstAttribute="leading" secondItem="ejW-sL-O0A" secondAttribute="trailing" constant="46" id="6dS-fg-5hO"/>
                                     <constraint firstItem="ydu-31-8f8" firstAttribute="trailing" secondItem="lKg-3Q-u9W" secondAttribute="trailingMargin" id="8oz-5R-tGM"/>
                                     <constraint firstAttribute="height" constant="30" id="LYW-TI-XIi"/>
                                     <constraint firstItem="Psr-GL-J1R" firstAttribute="leading" secondItem="lKg-3Q-u9W" secondAttribute="leadingMargin" id="P2O-o2-YCX"/>
+                                    <constraint firstItem="ejW-sL-O0A" firstAttribute="centerY" secondItem="ydu-31-8f8" secondAttribute="centerY" id="QHZ-w6-rVQ"/>
                                     <constraint firstItem="ydu-31-8f8" firstAttribute="baseline" secondItem="Psr-GL-J1R" secondAttribute="baseline" id="mqc-Df-1wh"/>
                                     <constraint firstItem="Psr-GL-J1R" firstAttribute="centerY" secondItem="lKg-3Q-u9W" secondAttribute="centerY" id="nFI-dQ-Q0b"/>
                                     <constraint firstItem="Psr-GL-J1R" firstAttribute="leading" secondItem="lKg-3Q-u9W" secondAttribute="leading" constant="8" id="pFj-4o-mwQ"/>
                                     <constraint firstItem="Psr-GL-J1R" firstAttribute="top" secondItem="lKg-3Q-u9W" secondAttribute="top" constant="5" id="xbp-mD-PhU"/>
+                                    <constraint firstItem="ejW-sL-O0A" firstAttribute="leading" secondItem="Psr-GL-J1R" secondAttribute="trailing" constant="46" id="zeP-Ca-4bI"/>
                                 </constraints>
                             </view>
                         </subviews>

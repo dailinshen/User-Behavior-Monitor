@@ -14,6 +14,7 @@ class WebViewController: UIViewController, UIScrollViewDelegate, MFMailComposeVi
     @IBOutlet weak var ClockLabel: UILabel!
     @IBOutlet weak var PercentageLabel: UILabel!
     
+    
     @IBOutlet weak var SaveSubmitBtn: UIButton!
     
     @IBOutlet weak var WebView: UIWebView!
@@ -33,6 +34,9 @@ class WebViewController: UIViewController, UIScrollViewDelegate, MFMailComposeVi
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        PercentageLabel.isHidden = true
+        ClockLabel.isHidden = true
         
         // Selector chooses the updateClockTime function and repeats makes the function repeat.
         ClockTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector("updateClockTime"), userInfo: nil, repeats: true)
