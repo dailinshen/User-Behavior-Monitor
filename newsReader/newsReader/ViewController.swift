@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var refresher: UIRefreshControl!
     func populate(){
+        fetchArticles()
         self.TableView.reloadData()
 
         refresher.endRefreshing()
@@ -47,7 +48,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // https://newsapi.org/v1/articles?source=buzzfeed&sortBy=latest&apiKey=4fd46387a9f1413e8e2a07fd8911a0ec
         // Marshable:
         // https://newsapi.org/v1/articles?source=mashable&sortBy=latest&apiKey=4fd46387a9f1413e8e2a07fd8911a0ec
-        let urlRequest = URLRequest(url: URL(string:"https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=4fd46387a9f1413e8e2a07fd8911a0ec")!) //      ! is used to unwrap sth.
+
+        
+        let urlRequest = URLRequest(url: URL(string:"https://newsapi.org/v1/articles?source=buzzfeed&sortBy=latest&apiKey=4fd46387a9f1413e8e2a07fd8911a0ec")!) //      ! is used to unwrap sth.
         
         let task = URLSession.shared.dataTask(with: urlRequest){ (data, reponse, error) in
             
