@@ -15,6 +15,7 @@
 		7754C4C01E23BBF4005BC9AE /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754C4BF1E23BBF4005BC9AE /* ArticleCell.swift */; };
 		7754C4C21E23BFA9005BC9AE /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754C4C11E23BFA9005BC9AE /* Article.swift */; };
 		7754C4C41E23DEBE005BC9AE /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7754C4C31E23DEBE005BC9AE /* WebViewController.swift */; };
+		77F662C21E63BF9E00712285 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77F662C11E63BF9E00712285 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		7754C4BF1E23BBF4005BC9AE /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		7754C4C11E23BFA9005BC9AE /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		7754C4C31E23DEBE005BC9AE /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		77F662C11E63BF9E00712285 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77F662C21E63BF9E00712285 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +49,7 @@
 			children = (
 				7754C4AC1E23AA9F005BC9AE /* newsReader */,
 				7754C4AB1E23AA9F005BC9AE /* Products */,
+				77F662C01E63BF9E00712285 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +75,14 @@
 				7754C4C31E23DEBE005BC9AE /* WebViewController.swift */,
 			);
 			path = newsReader;
+			sourceTree = "<group>";
+		};
+		77F662C01E63BF9E00712285 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77F662C11E63BF9E00712285 /* MessageUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

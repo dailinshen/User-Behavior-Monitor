@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add UIScrollViewDelegate
+class WebViewController: UIViewController, UIScrollViewDelegate, MFMailComposeViewControllerDelegate {  //  0110, add UIScrollViewDelegate
     
     @IBOutlet weak var ClockLabel: UILabel!
     @IBOutlet weak var PercentageLabel: UILabel!
@@ -92,6 +93,39 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
         let currentvalues = String(seconds + minutes * 60) + "," + String(percentage_store)
         store_data.append(currentvalues)
     }
+
+    func configuredMailComposeViewController(imageurl:URL, file_name: String)->MFMailComposeViewController{
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        mailComposerVC.setToRecipients(["dailinshen@gmail.com"])
+        mailComposerVC.setSubject("Feed Monitor Data")
+        mailComposerVC.setMessageBody("Hi Dailin, \n\nI would like to share the feedback!\n\n", isHTML: false)
+        let filepath = imageurl.path
+        if FileManager.default.fileExists(atPath: filepath){
+            if let fileData = FileManager.default.contents(atPath: filepath){
+                mailComposerVC.addAttachmentData(fileData, mimeType: "text/plain", fileName: file_name)
+            }else{
+                print("could not parse the file")
+            }
+        }else{
+            print("file not exists.")
+        }
+
+        return mailComposerVC
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result.rawValue {
+        case MFMailComposeResult.cancelled.rawValue:
+            print("Cancelled mail.")
+        case MFMailComposeResult.sent.rawValue:
+            print("Mail sent.")
+        default:
+            break
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     @IBAction func SaveSubmitBtnPressed(_ sender: Any) {
         print("pressed")
@@ -104,9 +138,10 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
             let title_temp = story_title.replacingOccurrences(of: " ", with: "_", options: String.CompareOptions.literal, range: nil)
             
             // create the destination url for the text file to be saved
-            // This url will be used to send to AWS account. 
+            // This url will be used to send to AWS account.
             
             let fileDestinationUrl = documentDirectoryURL.appendingPathComponent("\(title_temp).txt")
+            
             let text = store_data.joined(separator: "\n")
             do {
                 // writing to disk
@@ -116,6 +151,13 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
                 // reading from disk
                 do {
                     // success notification
+                    let mailtobesent = configuredMailComposeViewController(imageurl: fileDestinationUrl, file_name: title_temp)
+                    if MFMailComposeViewController.canSendMail(){
+                        self.present(mailtobesent, animated: true, completion: nil)
+                    } else {
+                        print("error occured.")
+                    }
+                    
                     print("successfully saved at\(fileDestinationUrl)")
                 } catch let error as NSError {
                     print("error loading contentsOf url \(fileDestinationUrl)")
@@ -133,26 +175,4 @@ class WebViewController: UIViewController, UIScrollViewDelegate {  //  0110, add
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
