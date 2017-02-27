@@ -14,10 +14,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var articles: [Article]? = []
     
+    
+    var refresher: UIRefreshControl!
+    func populate(){
+        self.TableView.reloadData()
+
+        refresher.endRefreshing()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fetchArticles()
+        
+        
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string:"Pull to refresh...")
+        refresher.addTarget(self, action: #selector(ViewController.populate), for: UIControlEvents.valueChanged)
+        self.TableView.addSubview(refresher)
     }
 
     func fetchArticles() {
